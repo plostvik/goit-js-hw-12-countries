@@ -1,9 +1,8 @@
 import css from "./css/style.css";
 import fetchCountries from "./fetchCountries.js";
 import countryTemplate from "./countryTemplate.hbs";
-// import debounce from "../node_modules/lodash.debounce/index.js";
-var debounce = require("lodash.debounce");
 
+var debounce = require("lodash.debounce");
 const search = document.querySelector(".search");
 const countryList = document.querySelector(".country-list");
 const countryDiv = document.querySelector(".country-wrapper");
