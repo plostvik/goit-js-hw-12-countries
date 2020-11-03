@@ -6,12 +6,13 @@ var debounce = require("lodash.debounce");
 const search = document.querySelector(".search");
 const countryList = document.querySelector(".country-list");
 const countryDiv = document.querySelector(".country-wrapper");
+countryDiv.innerHTML = "" || localStorage.getItem("countryDiv");
 
 const render = function (event) {
   countryList.innerHTML = "";
   countryDiv.innerHTML = "";
   let result;
-  if (event.target.value !== "") {
+  if (event.target.value !== "" && event.target.value.length >= 1) {
     result = fetchCountries(event.target.value);
     result.then((result) => {
       if (result) {
@@ -25,11 +26,13 @@ const render = function (event) {
               if (el.name === event.target.textContent) {
                 countryList.innerHTML = "";
                 countryDiv.innerHTML = countryTemplate(el);
+                localStorage.setItem("countryDiv", countryTemplate(el));
               }
             });
           });
         } else {
           countryDiv.innerHTML = countryTemplate(result[0]);
+          localStorage.setItem("countryDiv", countryTemplate(result[0]));
         }
       }
     });

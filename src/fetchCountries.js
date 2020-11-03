@@ -12,10 +12,16 @@ export default function (searchQuery) {
     })
     .then((response) => {
       if (response.length > 10) {
-        error("Too many matches found. Please enter a more specific query");
+        error({
+          delay: 300,
+          text: "Too many matches found. Please enter a more specific query",
+        });
       } else return response;
     })
     .catch(() => {
-      error(`Error can't find country with this name`);
+      error({
+        delay: 300,
+        text: "Error can't find country with this name",
+      });
     });
 }
